@@ -1,7 +1,5 @@
-import json 
-import os
-import re
 import datetime
+import os
 from Google import Create_Service
 from googleapiclient.http import MediaFileUpload
 
@@ -15,8 +13,6 @@ service = Create_Service(CLIENT_SECRET_FILE, API_NAME, API_VERSION, SCOPES)
 # upload_date_time = datetime.datetime(2021, 1, 3, 12, 30, 0).isoformat() + '.000Z'
 
 
-# ######## GET CLIP DATA ########
-
 # Get current directory path
 mypath = os.path.dirname(os.path.realpath(__file__))
 
@@ -28,23 +24,13 @@ for f in files:
   if ".mp4" in f:
     video = f
 
-# Opening JSON file 
-f = open("../Data/ClipData.json")
-data = json.load(f) 
-
-clipViews = str(data["views"])
-clipTitle = data["title"]
-channelName = data["name"]
-
-# Closing JSON file 
-f.close()
 
 request_body = {
     'snippet': {
         'categoryId': 24,
-        'title': clipTitle,
-        'description': clipTitle + "\nCredits: https://www.twitch.tv/" + channelName + "\n\nMy Twitter: https://twitter.com/Clipperinoo\n\nIf you're in this clip and want it removed you can DM me on Twitter :)",
-        'tags': [clipTitle, channelName, 'Twitch Clips', 'Most Viewed', "Twitch Fails", "Top", "Best", "Of The Day"]
+        'title': "your_title_here",
+        'description': "your_description_here",
+        'tags': ["tag1", "tag2", "tag3"]
     },
     'status': {
         'privacyStatus': 'private',
